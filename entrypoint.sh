@@ -12,5 +12,11 @@ sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:$PORT>/" /etc/apache2/sites-availa
 # Set ServerName to suppress warnings
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
+# Fix MPM conflict (ensure only mpm_prefork is loaded)
+a2dismod mpm_event 2>/dev/null || true
+a2dismod mpm_worker 2>/dev/null || true
+a2dismod mpm_prefork 2>/dev/null || true
+a2enmod mpm_prefork
+
 echo "==> Starting Apache in foreground..."
 exec apache2-foreground

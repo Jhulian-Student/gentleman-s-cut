@@ -18,12 +18,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
     exit(0);
 }
 
-// Database configuration: supports Railway native variables, standard cloud variables, and local defaults
-$host = getenv('MYSQLHOST') ?: (getenv('DB_HOST') ?: '127.0.0.1');
-$port = (int)(getenv('MYSQLPORT') ?: (getenv('DB_PORT') ?: 3306));
-$dbname = getenv('MYSQLDATABASE') ?: (getenv('DB_NAME') ?: 'gentlemans_cut_db');
-$username = getenv('MYSQLUSER') ?: (getenv('DB_USER') ?: 'root');
-$password = getenv('MYSQLPASSWORD') !== false ? getenv('MYSQLPASSWORD') : (getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+// Database configuration: supports all Railway native variables, standard cloud variables, and local defaults
+$host = getenv('MYSQLHOST') ?: (getenv('MYSQL_HOST') ?: (getenv('DB_HOST') ?: '127.0.0.1'));
+$port = (int)(getenv('MYSQLPORT') ?: (getenv('MYSQL_PORT') ?: (getenv('DB_PORT') ?: 3306)));
+$dbname = getenv('MYSQLDATABASE') ?: (getenv('MYSQL_DATABASE') ?: (getenv('DB_NAME') ?: 'gentlemans_cut_db'));
+$username = getenv('MYSQLUSER') ?: (getenv('MYSQL_USER') ?: (getenv('DB_USER') ?: 'root'));
+$password = getenv('MYSQLPASSWORD') !== false ? getenv('MYSQLPASSWORD') : (getenv('MYSQL_ROOT_PASSWORD') !== false ? getenv('MYSQL_ROOT_PASSWORD') : (getenv('DB_PASS') !== false ? getenv('DB_PASS') : ''));
 
 // Also support cloud DATABASE_URL / MYSQL_URL (Railway, Render, Heroku)
 $dbUrl = getenv('MYSQL_URL') ?: getenv('DATABASE_URL');
@@ -32,9 +32,9 @@ if ($dbUrl) {
     if (!empty($parsed['host'])) {
         $host = $parsed['host'];
         $port = !empty($parsed['port']) ? (int)$parsed['port'] : 3306;
-        $username = $parsed['user'] ?? $username;
-        $password = $parsed['pass'] ?? $password;
-        $dbname = ltrim($parsed['path'] ?? '', '/') ?: $dbname;
+        $username = isset($parsed['user']) ? urldecode($parsed['user']) : $username;
+        $password = isset($parsed['pass']) ? urldecode($parsed['pass']) : $password;
+        $dbname = !empty($parsed['path']) ? ltrim($parsed['path'], '/') : $dbname;
     }
 }
 

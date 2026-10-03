@@ -11,10 +11,15 @@ Options -Indexes
     AddType application/json .json
 </IfModule>
 
-# Protect sensitive database and config files from direct browser access
-<FilesMatch "^(database\.sql|setup_database\.php|\.env.*)$">
-    Order allow,deny
-    Deny from all
+# Protect sensitive database dump and config files from direct browser access
+<FilesMatch "^(database\.sql|\.env.*)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
 </FilesMatch>
 
 # Enable gzip compression if available

@@ -15,18 +15,13 @@ RUN a2enmod rewrite headers
 # Copy application files into Apache root
 COPY . /var/www/html/
 
-# Create entrypoint script to dynamically configure runtime PORT for Railway
-RUN printf '#!/bin/sh\n\
-PORT="${PORT:-80}"\n\
-sed -i "s/Listen .*/Listen $PORT/" /etc/apache2/ports.conf\n\
-sed -i "s/<VirtualHost \\*:[0-9]*>/<VirtualHost \\*:$PORT>/" /etc/apache2/sites-available/000-default.conf\n\
-echo "Starting Apache on port $PORT..."\n\
-exec apache2-foreground\n' > /usr/local/bin/start-server.sh \
-    && chmod +x /usr/local/bin/start-server.sh
+# Copy and setup entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Give www-data ownership
+# Set www-data permissions
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
-CMD ["/usr/local/bin/start-server.sh"]
+CMD ["/usr/local/bin/entrypoint.sh"]

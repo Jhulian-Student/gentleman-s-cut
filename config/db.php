@@ -25,8 +25,8 @@ $dbname = getenv('MYSQLDATABASE') ?: (getenv('MYSQL_DATABASE') ?: (getenv('DB_NA
 $username = getenv('MYSQLUSER') ?: (getenv('MYSQL_USER') ?: (getenv('DB_USER') ?: 'root'));
 $password = getenv('MYSQLPASSWORD') !== false ? getenv('MYSQLPASSWORD') : (getenv('MYSQL_ROOT_PASSWORD') !== false ? getenv('MYSQL_ROOT_PASSWORD') : (getenv('DB_PASS') !== false ? getenv('DB_PASS') : ''));
 
-// Also support cloud DATABASE_URL / MYSQL_URL (Railway, Render, Heroku)
-$dbUrl = getenv('MYSQL_URL') ?: getenv('DATABASE_URL');
+// Also support cloud DATABASE_URL / MYSQL_URL / MYSQL_PRIVATE_URL (Railway, Render, Heroku)
+$dbUrl = getenv('MYSQL_PRIVATE_URL') ?: (getenv('MYSQL_URL') ?: getenv('DATABASE_URL'));
 if ($dbUrl) {
     $parsed = parse_url($dbUrl);
     if (!empty($parsed['host'])) {
@@ -72,10 +72,10 @@ try {
     if (strpos($uri, 'api/') !== false || strpos($accept, 'application/json') !== false) {
         http_response_code(500);
         header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Database connection error: ' . $e->getMessage()]);
+        echo json_encode(['success' => false, 'message' => "Database connection error [host: {$host}:{$port}, db: {$dbname}]: " . $e->getMessage()]);
         exit;
     }
-    die("Database connection failed: " . htmlspecialchars($e->getMessage()));
+    die("Database connection failed [host: {$host}:{$port}, db: {$dbname}]: " . htmlspecialchars($e->getMessage()));
 }
 
 /**

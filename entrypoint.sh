@@ -2,22 +2,18 @@
 set -e
 
 PORT="${PORT:-8080}"
-echo "==> Railway PORT is: $PORT"
+echo "==> Starting configuration for Railway on port: $PORT"
 
 # Ensure all files and directories have full read/execute permissions
 chmod -R 755 /var/www/html
 chown -R www-data:www-data /var/www/html
 
-# Configure ports.conf to listen on dynamic PORT, 80, and 8080
-cat << EOF > /etc/apache2/ports.conf
-Listen $PORT
-Listen 80
-Listen 8080
-EOF
+# Listen exclusively on Railway's assigned port (prevents duplicate listener error)
+echo "Listen $PORT" > /etc/apache2/ports.conf
 
-# Configure VirtualHost with DirectoryIndex and allow all access
+# Configure VirtualHost for the exact port
 cat << EOF > /etc/apache2/sites-available/000-default.conf
-<VirtualHost *:$PORT *:80 *:8080>
+<VirtualHost *:$PORT>
     ServerAdmin webmaster@localhost
     DocumentRoot /var/www/html
     DirectoryIndex index.html index.php
@@ -37,5 +33,8 @@ echo "ServerName localhost" >> /etc/apache2/apache2.conf 2>/dev/null || true
 a2dismod mpm_event mpm_worker 2>/dev/null || true
 a2enmod mpm_prefork 2>/dev/null || true
 
-echo "==> Starting Apache in foreground on port $PORT..."
+echo "==> Apache ports.conf content:"
+cat /etc/apache2/ports.conf
+
+echo "==> Starting Apache in foreground..."
 exec apache2-foreground

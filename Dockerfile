@@ -15,13 +15,18 @@ RUN a2enmod rewrite headers
 # Copy application files into Apache root
 COPY . /var/www/html/
 
-# Configure Apache to use Railway's dynamic PORT
-ENV PORT=80
-EXPOSE 80
-
-RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+# Create entrypoint script to dynamically configure runtime PORT for Railway
+RUN printf '#!/bin/sh\n\
+PORT="${PORT:-80}"\n\
+sed -i "s/Listen .*/Listen $PORT/" /etc/apache2/ports.conf\n\
+sed -i "s/<VirtualHost \\*:[0-9]*>/<VirtualHost \\*:$PORT>/" /etc/apache2/sites-available/000-default.conf\n\
+echo "Starting Apache on port $PORT..."\n\
+exec apache2-foreground\n' > /usr/local/bin/start-server.sh \
+    && chmod +x /usr/local/bin/start-server.sh
 
 # Give www-data ownership
 RUN chown -R www-data:www-data /var/www/html
 
-CMD ["apache2-foreground"]
+EXPOSE 80
+
+CMD ["/usr/local/bin/start-server.sh"]

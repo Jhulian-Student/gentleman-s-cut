@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Gentleman's Cut | Login</title>
+
+    <!-- Favicon & Website Icons -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/favicon.svg" alt="The Gentleman's Cut Logo" class="brand-logo-icon">
+                    <span>THE GENTLEMAN'S CUT</span>
+                </a>
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="auth-section">
+
+            <div class="auth-box">
+
+                <p class="small-title">WELCOME BACK</p>
+
+                <h1>Login</h1>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn full-btn"
+                    >
+                        Login
+                    </button>
+
+                </form>
+
+
+                <p id="loginMessage"></p>
+
+
+                <p class="auth-link">
+                    Don't have an account?
+                    <a href="register.html">
+                        Register here
+                    </a>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/login.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

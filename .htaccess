@@ -1,0 +1,23 @@
+# Apache / LiteSpeed Configuration for The Gentleman's Cut
+DirectoryIndex index.html
+
+# Prevent directory indexing
+Options -Indexes
+
+# MIME types
+<IfModule mod_mime.c>
+    AddType image/svg+xml .svg .svgz
+    AddType image/x-icon .ico
+    AddType application/json .json
+</IfModule>
+
+# Protect sensitive database and config files from direct browser access
+<FilesMatch "^(database\.sql|setup_database\.php|\.env.*)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Enable gzip compression if available
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>

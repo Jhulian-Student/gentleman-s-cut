@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>The Gentleman's Cut | Dashboard</title>
+
+    <!-- Favicon & Website Icons -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <a href="index.html">
+                    <img src="images/favicon.svg" alt="The Gentleman's Cut Logo" class="brand-logo-icon">
+                    <span>THE GENTLEMAN'S CUT</span>
+                </a>
+
+            </div>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="booking.html">
+                        Book Appointment
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="logout-link">
+                        Sign Out
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="page-header">
+
+            <p class="small-title" id="dashboardRoleLabel">
+                CUSTOMER DASHBOARD
+            </p>
+
+            <h1 id="dashboardGreeting">
+                Welcome, Customer
+            </h1>
+
+        </section>
+
+
+        <section class="section">
+
+            <div class="dashboard-header">
+
+                <h2 id="dashboardSectionTitle">
+                    My Appointments
+                </h2>
+
+                <a
+                    href="booking.html"
+                    class="btn"
+                    id="dashboardActionBtn"
+                >
+                    New Appointment
+                </a>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Service</th>
+
+                            <th id="dashboardColParty">Barber</th>
+
+                            <th>Date</th>
+
+                            <th>Time</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="appointmentTable">
+
+                        <tr>
+
+                            <td>
+                                Classic Haircut
+                            </td>
+
+                            <td>
+                                <span class="barber-name">Alex</span>
+                            </td>
+
+                            <td>
+                                2026-09-25
+                            </td>
+
+                            <td>
+                                2:00 PM
+                            </td>
+
+                            <td>
+                                Pending
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>
+                The Gentleman's Cut
+            </h3>
+
+            <p>
+                © <span data-current-year></span> The Gentleman's Cut.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

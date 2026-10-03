@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>The Gentleman's Cut | Register</title>
+
+    <!-- Favicon & Website Icons -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <a href="index.html">
+                    <img src="images/favicon.svg" alt="The Gentleman's Cut Logo" class="brand-logo-icon">
+                    <span>THE GENTLEMAN'S CUT</span>
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="auth-section">
+
+            <div class="auth-box">
+
+                <p class="small-title">
+                    CREATE AN ACCOUNT
+                </p>
+
+                <h1>Register</h1>
+
+
+                <form id="registerForm">
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Contact Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerRole">Are you applying as a Customer or Barber?</label>
+                        <select id="registerRole" name="registerRole" required>
+                            <option value="customer" selected>Customer (Booking appointments)</option>
+                            <option value="barber">Barber (Staff / Working as a barber)</option>
+                        </select>
+                        <small style="display: block; margin-top: 6px; color: #6b645b; font-size: 12.5px;">Choose whether you are joining as a customer or applying to work as a barber.</small>
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn full-btn"
+                    >
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                <p id="registerMessage"></p>
+
+
+                <p class="auth-link">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login here
+                    </a>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/login.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

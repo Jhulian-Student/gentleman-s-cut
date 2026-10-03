@@ -1,0 +1,1423 @@
+/* =========================================================
+   THE GENTLEMAN'S CUT
+   Main Website Stylesheet
+   ========================================================= */
+
+/* =========================
+   1. RESET & GLOBAL STYLES
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        linear-gradient(180deg, rgba(12, 12, 12, 0.96), rgba(24, 24, 24, 0.96)),
+        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=80') center/cover fixed no-repeat;
+    color: #f3f3f3;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================
+   2. COLORS
+   ========================= */
+
+:root {
+    --primary: #1c1c1c;
+    --secondary: #333333;
+    --accent: #c9a227;
+    --accent-dark: #a98516;
+    --light: #f7f7f7;
+    --white: #ffffff;
+    --gray: #777777;
+    --light-gray: #eeeeee;
+    --border: #dddddd;
+    --success: #2e7d32;
+    --danger: #c62828;
+    --customer-color: #1a5276; /* Rich deep blue for customers */
+    --barber-color: #b7791f;   /* Artisan warm gold/amber for barbers */
+    --barber-col-service: #2b3a4a; /* Service font color on barber dashboard */
+    --barber-col-date: #4a5568;    /* Date font color on barber dashboard */
+    --barber-col-time: #8a6514;    /* Time font color on barber dashboard */
+    --contact-label-color: #c9a227; /* Font color for Full Name, Email, and Message labels */
+}
+
+
+/* =========================
+   3. CONTAINER
+   ========================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* =========================
+   4. HEADER / NAVIGATION
+   ========================= */
+
+header {
+    background-color: var(--primary);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar {
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 1px;
+    font-family: "Apple Chancery", "Snell Roundhand", "Segoe Script", cursive;
+    line-height: 1.2;
+}
+
+.logo a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Apple Chancery", "Snell Roundhand", "Segoe Script", cursive;
+}
+
+.brand-logo-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+}
+
+.logo span {
+    color: var(--white);
+}
+
+.small-title {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a.active {
+    color: var(--accent);
+}
+
+.signout-nav-btn {
+    color: #e74c3c !important;
+    font-weight: 600;
+}
+
+.signout-nav-btn:hover {
+    color: #ff6b6b !important;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================
+   5. BUTTONS
+   ========================= */
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+.btn-dark {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-dark:hover {
+    background-color: var(--secondary);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    opacity: 0.85;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================
+   6. HERO SECTION
+   ========================= */
+
+.hero {
+    min-height: 600px;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.72)),
+        radial-gradient(circle at top, rgba(201, 162, 39, 0.25), transparent 40%),
+        #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 750px;
+    padding: 30px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-family: "Apple Chancery", "Snell Roundhand", "Segoe Script", cursive;
+}
+
+.hero h1 span {
+    color: var(--accent);
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #eeeeee;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.section-content,
+.section-heading,
+.footer-content {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.section-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.text-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--accent-dark);
+    font-weight: 700;
+}
+
+.services-preview {
+    background: #f1efe9;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    margin: 0 auto 30px;
+    max-width: 1200px;
+    width: 90%;
+}
+
+.booking-cta {
+    background: linear-gradient(135deg, #181818, #292929);
+    color: var(--white);
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.booking-cta p {
+    color: #e6e6e6;
+    max-width: 700px;
+    margin: 0 auto 20px;
+}
+
+.booking-cta h2 {
+    color: var(--white);
+    margin-bottom: 12px;
+    font-size: 38px;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.full-btn {
+    width: 100%;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--gray);
+}
+
+.auth-link a {
+    color: var(--accent-dark);
+    font-weight: 700;
+}
+
+
+/* =========================
+   7. GENERAL SECTIONS
+   ========================= */
+
+.section {
+    padding: 70px 0;
+    background: rgba(12, 12, 12, 0.18);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-family: "Apple Chancery", "Snell Roundhand", "Segoe Script", cursive;
+}
+
+.section-title p {
+    color: var(--gray);
+}
+
+
+/* =========================
+   8. CARDS
+   ========================= */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    color: var(--primary);
+}
+
+.card p {
+    color: var(--gray);
+}
+
+
+/* =========================
+   9. SERVICE CARDS
+   ========================= */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+    padding: 0 0 30px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.service-image {
+    width: 100%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 22px;
+    border-bottom: 4px solid rgba(201, 162, 39, 0.7);
+}
+
+.service-haircut {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://i0.wp.com/zaloraphilippinesblog.wpcomstaging.com/wp-content/uploads/2026/04/d23a0-taper-fade-hairstyle.jpg?resize=720%2C1280&ssl=1') center/cover no-repeat;
+}
+
+.service-fade {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+
+.service-beard {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+
+.service-haircut-beard {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+
+.service-shampoo {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+
+.service-premium {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+
+.service-card h3 {
+    margin: 0 20px 10px;
+}
+
+.service-card p {
+    color: var(--gray);
+    margin: 0 20px 15px;
+}
+
+.service-card .price,
+.service-card .btn {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.price {
+    color: var(--accent-dark);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   10. FORMS
+   ========================= */
+
+.form-container {
+    max-width: 650px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23555555' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) center;
+    background-size: 14px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.15);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+select.form-control {
+    background-color: var(--white);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+/* =========================
+   11. AUTHENTICATION PAGES
+   ========================= */
+
+.auth-section {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: var(--light);
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #111;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.auth-box .subtitle {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 30px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--gray);
+}
+
+.auth-footer a {
+    color: var(--accent-dark);
+    font-weight: bold;
+}
+
+
+/* =========================
+   12. PAGE BANNER
+   ========================= */
+
+.page-header {
+    background: linear-gradient(135deg, #121212, #2a2a2a);
+    color: var(--white);
+    text-align: center;
+    padding: 80px 20px 70px;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: var(--white);
+    font-family: "Apple Chancery", "Snell Roundhand", "Segoe Script", cursive;
+}
+
+.page-header p {
+    color: #dddddd;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.page-banner {
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.page-banner h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.page-banner p {
+    color: #dddddd;
+}
+
+
+/* =========================
+   13. ABOUT SECTION
+   ========================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-content h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    color: var(--gray);
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   14. CONTACT SECTION
+   ========================= */
+
+.contact-grid,
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.about-showcase {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.about-image {
+    width: min(90%, 560px);
+    height: 460px;
+    border-radius: 22px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.14);
+    border: 4px solid rgba(201, 162, 39, 0.6);
+}
+
+.about-main-image {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+}
+
+.about-content h2 {
+    margin-bottom: 18px;
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.about-content p {
+    margin-bottom: 15px;
+    color: var(--gray);
+}
+
+.about-mission-grid {
+    gap: 30px;
+}
+
+.mission-card {
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    border: 1px solid rgba(201, 162, 39, 0.18);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.mini-image {
+    width: 100%;
+    height: 220px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    background-size: cover;
+    background-position: center;
+}
+
+.mini-image-mission {
+    background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+}
+
+.mini-image-vision {
+    background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+}
+
+.contact-info {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 35px;
+    border-radius: 10px;
+}
+
+.contact-info h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    margin-bottom: 20px;
+}
+
+.contact-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-item p {
+    color: #dddddd;
+}
+
+
+/* =========================
+   15. BOOKING SECTION
+   ========================= */
+
+.booking-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.booking-shell {
+    display: grid;
+    grid-template-columns: 0.9fr 1.3fr;
+    gap: 28px;
+    align-items: stretch;
+}
+
+.booking-aside {
+    background: linear-gradient(180deg, #171717 0%, #2a2a2a 100%);
+    color: var(--white);
+    border-radius: 22px;
+    padding: 34px 28px;
+    box-shadow: 0 20px 40px rgba(17, 17, 17, 0.15);
+}
+
+.booking-aside h2 {
+    color: var(--white);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1.15;
+    margin-bottom: 14px;
+    font-family: "Apple Chancery", "Snell Roundhand", "Segoe Script", cursive;
+}
+
+.booking-intro {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 26px;
+    font-size: 1rem;
+}
+
+.booking-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.booking-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 162, 39, 0.25);
+    border-radius: 16px;
+    padding: 16px 14px;
+}
+
+.highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #151515;
+    font-size: 0.8rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.booking-highlight h3 {
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+}
+
+.booking-highlight p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.92rem;
+}
+
+.booking-form-wrap {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(201, 162, 39, 0.18);
+    border-radius: 22px;
+    padding: 30px 28px;
+    box-shadow: 0 18px 35px rgba(23, 23, 23, 0.08);
+}
+
+.booking-form-header {
+    margin-bottom: 20px;
+}
+
+.mini-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 8px;
+}
+
+.booking-form-header h3 {
+    font-size: 2rem;
+    color: var(--primary);
+    font-family: "Apple Chancery", "Snell Roundhand", "Segoe Script", cursive;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 6px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--secondary);
+}
+
+#contactForm label {
+    color: var(--contact-label-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #ddd2bf;
+    background: #f8f5f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: var(--primary);
+    transition: 0.25s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #8b8b8b;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.14);
+    background: #fffdf9;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.booking-submit-btn {
+    margin-top: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent), #d9b74b);
+    color: #171717;
+    border-radius: 12px;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    box-shadow: 0 14px 20px rgba(201, 162, 39, 0.2);
+}
+
+.booking-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 26px rgba(201, 162, 39, 0.28);
+}
+
+#bookingMessage {
+    margin-top: 18px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.booking-success {
+    display: block;
+    padding: 12px 14px;
+    background: rgba(46, 125, 50, 0.12);
+    border: 1px solid rgba(46, 125, 50, 0.25);
+    border-radius: 10px;
+    color: var(--success);
+}
+
+.booking-error {
+    display: block;
+    padding: 12px 14px;
+    background: rgba(198, 40, 40, 0.08);
+    border: 1px solid rgba(198, 40, 40, 0.2);
+    border-radius: 10px;
+    color: var(--danger);
+}
+
+.booking-summary {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.booking-summary h3 {
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   16. DASHBOARD
+   ========================= */
+
+.dashboard {
+    padding: 50px 0;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    color: var(--primary);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.dashboard-card {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h3 {
+    color: var(--gray);
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.dashboard-card .number {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+
+/* =========================
+   17. TABLES
+   ========================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+thead {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    color: #222222;
+}
+
+th {
+    font-weight: bold;
+    color: var(--white);
+}
+
+tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.customer-name {
+    color: var(--customer-color);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.barber-name {
+    color: var(--barber-color);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* Barber Dashboard Custom Column Styles */
+.barber-service {
+    color: var(--barber-col-service);
+    font-weight: 600;
+}
+
+.barber-date {
+    color: var(--barber-col-date);
+    font-weight: 600;
+}
+
+.barber-time {
+    color: var(--barber-col-time);
+    font-weight: 700;
+}
+
+
+/* =========================
+   18. STATUS BADGES
+   ========================= */
+
+.status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-completed {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+
+/* =========================
+   19. ADMIN PANEL
+   ========================= */
+
+.admin-section {
+    padding: 50px 0;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+
+/* =========================
+   20. ALERTS / MESSAGES
+   ========================= */
+
+.alert {
+    padding: 14px 18px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+
+/* =========================
+   21. FOOTER
+   ========================= */
+
+footer {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 40px 0 20px;
+    margin-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-column h3 {
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.footer-column p,
+.footer-column a {
+    color: #cccccc;
+}
+
+.footer-column a:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+}
+
+
+/* =========================
+   22. UTILITY CLASSES
+   ========================= */
+
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 10px;
+}
+
+.mt-2 {
+    margin-top: 20px;
+}
+
+.mt-3 {
+    margin-top: 30px;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+.mb-2 {
+    margin-bottom: 20px;
+}
+
+.mb-3 {
+    margin-bottom: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================
+   23. RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .card-container,
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        padding: 18px 0;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .section-title h2 {
+        font-size: 30px;
+    }
+
+    .card-container,
+    .service-grid,
+    .dashboard-grid,
+    .form-row,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header,
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .form-container,
+    .auth-box {
+        padding: 25px;
+    }
+
+    .page-banner h1 {
+        font-size: 32px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .action-buttons .btn {
+        width: auto;
+    }
+}

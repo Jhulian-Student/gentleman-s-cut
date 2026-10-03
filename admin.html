@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        The Gentleman's Cut | Admin Dashboard
+    </title>
+
+    <!-- Favicon & Website Icons -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <a href="index.html">
+                    <img src="images/favicon.svg" alt="The Gentleman's Cut Logo" class="brand-logo-icon">
+                    <span>THE GENTLEMAN'S CUT</span>
+                </a>
+
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" class="logout-link">Sign Out</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="page-header">
+
+            <p class="small-title">
+                ADMINISTRATION
+            </p>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p id="adminAccessNotice">
+                Manage appointments and services.
+            </p>
+
+        </section>
+
+
+        <!-- APPOINTMENTS -->
+
+        <section class="section">
+
+            <div class="dashboard-header">
+
+                <h2>
+                    Appointments
+                </h2>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Customer</th>
+
+                            <th>Service</th>
+
+                            <th>Barber</th>
+
+                            <th>Date</th>
+
+                            <th>Time</th>
+
+                            <th>Status</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="adminAppointmentTable">
+
+                        <tr>
+
+                            <td>
+                                1
+                            </td>
+
+                            <td>
+                                <span class="customer-name">Juan Dela Cruz</span>
+                            </td>
+
+                            <td>
+                                Fade / Taper
+                            </td>
+
+                            <td>
+                                <span class="barber-name">Marco</span>
+                            </td>
+
+                            <td>
+                                2026-09-25
+                            </td>
+
+                            <td>
+                                3:00 PM
+                            </td>
+
+                            <td>
+                                Pending
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action-btn"
+                                >
+                                    Update
+                                </button>
+
+                                <button
+                                    class="delete-btn"
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVICES -->
+
+        <section class="section">
+
+            <div class="dashboard-header">
+
+                <h2>
+                    Services
+                </h2>
+
+                <button
+                    class="btn"
+                    id="addServiceBtn"
+                >
+                    Add Service
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Service</th>
+
+                            <th>Price</th>
+
+                            <th>Duration</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="serviceTable">
+
+                        <tr>
+
+                            <td>
+                                1
+                            </td>
+
+                            <td>
+                                Classic Haircut
+                            </td>
+
+                            <td>
+                                ₱250
+                            </td>
+
+                            <td>
+                                30 minutes
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action-btn"
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    class="delete-btn"
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                2
+                            </td>
+
+                            <td>
+                                Fade / Taper
+                            </td>
+
+                            <td>
+                                ₱300
+                            </td>
+
+                            <td>
+                                40 minutes
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action-btn"
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    class="delete-btn"
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

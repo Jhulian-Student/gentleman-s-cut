@@ -20,8 +20,9 @@ COPY . /var/www/html/
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Set www-data permissions
-RUN chown -R www-data:www-data /var/www/html
+# Set www-data ownership and 755 permissions
+RUN chmod -R 755 /var/www/html \
+    && chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 

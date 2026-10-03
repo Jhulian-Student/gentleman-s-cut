@@ -44,6 +44,28 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES => false
     ]);
+
+    // Auto-create database tables on first launch if they do not exist
+    static $dbInitialized = false;
+    if (!$dbInitialized) {
+        $dbInitialized = true;
+        try {
+            $tableCheck = $pdo->query("SHOW TABLES LIKE 'users'")->fetch();
+            if (!$tableCheck) {
+                $sqlPath = __DIR__ . '/../database/database.sql';
+                if (file_exists($sqlPath)) {
+                    $initSql = file_get_contents($sqlPath);
+                    if ($dbname !== 'gentlemans_cut_db') {
+                        $initSql = preg_replace('/CREATE DATABASE IF NOT EXISTS `gentlemans_cut_db`[^;]*;/i', '', $initSql);
+                        $initSql = preg_replace('/USE `gentlemans_cut_db`;/i', "USE `{$dbname}`;", $initSql);
+                    }
+                    $pdo->exec($initSql);
+                }
+            }
+        } catch (Exception $initError) {
+            // Non-blocking: continue normal execution
+        }
+    }
 } catch (PDOException $e) {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
     $accept = $_SERVER['HTTP_ACCEPT'] ?? '';

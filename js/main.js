@@ -79,17 +79,15 @@ function initNavbarDropdowns() {
         const toggle = dropdown.querySelector('.nav-dropdown-toggle');
         if (!toggle) return;
 
-        // Toggle dropdown on click/tap (especially helpful on mobile and touch devices)
+        // Toggle dropdown on click/tap (works on desktop, laptop, mobile, and tablets)
         toggle.addEventListener('click', (e) => {
-            // On mobile or if clicking caret specifically, prevent direct navigation to toggle dropdown
-            if (window.innerWidth <= 768 || e.target.classList.contains('dropdown-caret')) {
-                e.preventDefault();
-                const isOpen = dropdown.classList.contains('open');
-                // Close other dropdowns
-                dropdowns.forEach(d => d.classList.remove('open'));
-                if (!isOpen) {
-                    dropdown.classList.add('open');
-                }
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = dropdown.classList.contains('open');
+            // Close other dropdowns
+            dropdowns.forEach(d => d.classList.remove('open'));
+            if (!isOpen) {
+                dropdown.classList.add('open');
             }
         });
     });

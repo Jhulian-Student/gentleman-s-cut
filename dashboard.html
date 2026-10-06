@@ -28,157 +28,228 @@
 
 <body>
 
-    <header>
+    <div class="dashboard-wrapper">
 
-        <nav class="navbar">
+        <!-- DASHBOARD SIDEBAR (SEPARATED TO THE SIDE) -->
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
 
-            <div class="logo">
-
-                <a href="index.html">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
                     <img src="images/favicon.svg" alt="The Gentleman's Cut Logo" class="brand-logo-icon">
-                    <span>THE GENTLEMAN'S CUT</span>
+                    <span class="sidebar-brand-name">THE GENTLEMAN'S CUT</span>
+                </a>
+            </div>
+
+            <div class="sidebar-user-profile">
+                <div class="sidebar-avatar">
+                    <span>👤</span>
+                </div>
+                <div class="sidebar-user-details">
+                    <h4 id="sidebarUserName">Customer</h4>
+                    <span class="sidebar-role-badge badge-customer" id="sidebarRoleBadge">CUSTOMER</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <p class="sidebar-section-title">DASHBOARD</p>
+                <a href="dashboard.html" class="sidebar-link active">
+                    <span class="link-icon">📋</span>
+                    <span>Appointments</span>
+                </a>
+                <a href="booking.html" class="sidebar-link" id="sidebarActionLink">
+                    <span class="link-icon">✂️</span>
+                    <span>New Appointment</span>
                 </a>
 
-            </div>
-
-
-            <ul class="nav-links">
-
-                <li>
-                    <a href="index.html">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="booking.html">
-                        Book Appointment
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="logout-link">
-                        Sign Out
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
-
-    </header>
-
-
-    <main>
-
-        <section class="page-header">
-
-            <p class="small-title" id="dashboardRoleLabel">
-                CUSTOMER DASHBOARD
-            </p>
-
-            <h1 id="dashboardGreeting">
-                Welcome, Customer
-            </h1>
-
-        </section>
-
-
-        <section class="section">
-
-            <div class="dashboard-header">
-
-                <h2 id="dashboardSectionTitle">
-                    My Appointments
-                </h2>
-
-                <a
-                    href="booking.html"
-                    class="btn"
-                    id="dashboardActionBtn"
-                >
-                    New Appointment
+                <p class="sidebar-section-title">WEBSITE</p>
+                <a href="index.html" class="sidebar-link">
+                    <span class="link-icon">🏠</span>
+                    <span>Home Page</span>
                 </a>
+                <a href="services.html" class="sidebar-link">
+                    <span class="link-icon">💈</span>
+                    <span>Services</span>
+                </a>
+                <a href="about.html" class="sidebar-link">
+                    <span class="link-icon">ℹ️</span>
+                    <span>About Us</span>
+                </a>
+                <a href="contact.html" class="sidebar-link">
+                    <span class="link-icon">✉️</span>
+                    <span>Contact</span>
+                </a>
+            </nav>
 
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-logout logout-link">
+                    <span class="link-icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
             </div>
 
+        </aside>
 
-            <div class="table-container">
+        <!-- BACKDROP FOR MOBILE SIDEBAR DRAWER -->
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-                <table>
+        <!-- MAIN DASHBOARD CONTENT AREA -->
+        <div class="dashboard-main">
 
-                    <thead>
+            <header class="dashboard-header-bar">
 
-                        <tr>
+                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Sidebar">
+                    <span>☰</span>
+                </button>
 
-                            <th>Service</th>
+                <nav class="navbar">
 
-                            <th id="dashboardColParty">Barber</th>
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="images/favicon.svg" alt="The Gentleman's Cut Logo" class="brand-logo-icon">
+                            <span>THE GENTLEMAN'S CUT</span>
+                        </a>
+                    </div>
 
-                            <th>Date</th>
+                    <ul class="nav-links">
 
-                            <th>Time</th>
+                        <li class="nav-item-dropdown">
+                            <a href="index.html" class="nav-dropdown-toggle">
+                                Home <span class="dropdown-caret">▾</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="booking.html">Book Now</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </li>
 
-                            <th>Status</th>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="contact.html">Contact</a></li>
 
-                        </tr>
+                        <li class="nav-auth-item nav-auth-side">
+                            <a href="#" class="logout-link signout-nav-btn">Sign Out</a>
+                        </li>
 
-                    </thead>
+                    </ul>
 
+                </nav>
 
-                    <tbody id="appointmentTable">
+            </header>
 
-                        <tr>
+            <main class="dashboard-content-body">
 
-                            <td>
-                                Classic Haircut
-                            </td>
+                <section class="page-header">
 
-                            <td>
-                                <span class="barber-name">Alex</span>
-                            </td>
+                    <p class="small-title" id="dashboardRoleLabel">
+                        CUSTOMER DASHBOARD
+                    </p>
 
-                            <td>
-                                2026-09-25
-                            </td>
+                    <h1 id="dashboardGreeting">
+                        Welcome, Customer
+                    </h1>
 
-                            <td>
-                                2:00 PM
-                            </td>
+                </section>
 
-                            <td>
-                                Pending
-                            </td>
+                <section class="section">
 
-                        </tr>
+                    <div class="dashboard-header">
 
-                    </tbody>
+                        <h2 id="dashboardSectionTitle">
+                            My Appointments
+                        </h2>
 
-                </table>
+                        <a
+                            href="booking.html"
+                            class="btn"
+                            id="dashboardActionBtn"
+                        >
+                            New Appointment
+                        </a>
 
-            </div>
+                    </div>
 
-        </section>
+                    <div class="table-container">
 
-    </main>
+                        <table>
 
+                            <thead>
 
-    <footer>
+                                <tr>
 
-        <div class="footer-content">
+                                    <th>Service</th>
 
-            <h3>
-                The Gentleman's Cut
-            </h3>
+                                    <th id="dashboardColParty">Barber</th>
 
-            <p>
-                © <span data-current-year></span> The Gentleman's Cut.
-                All Rights Reserved.
-            </p>
+                                    <th>Date</th>
+
+                                    <th>Time</th>
+
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="appointmentTable">
+
+                                <tr>
+
+                                    <td>
+                                        Classic Haircut
+                                    </td>
+
+                                    <td>
+                                        <span class="barber-name">Alex</span>
+                                    </td>
+
+                                    <td>
+                                        2026-09-25
+                                    </td>
+
+                                    <td>
+                                        2:00 PM
+                                    </td>
+
+                                    <td>
+                                        Pending
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+            <footer>
+
+                <div class="footer-content">
+
+                    <h3>
+                        The Gentleman's Cut
+                    </h3>
+
+                    <p>
+                        © <span data-current-year></span> The Gentleman's Cut.
+                        All Rights Reserved.
+                    </p>
+
+                </div>
+
+            </footer>
 
         </div>
 
-    </footer>
+    </div>
 
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>

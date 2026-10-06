@@ -74,6 +74,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // Update sidebar elements if present
+    const sidebarUserName = document.getElementById('sidebarUserName');
+    const sidebarRoleBadge = document.getElementById('sidebarRoleBadge');
+    const sidebarActionLink = document.getElementById('sidebarActionLink');
+
+    if (sidebarUserName) {
+        sidebarUserName.textContent = currentUser.fullName || currentUser.email;
+    }
+
+    if (sidebarRoleBadge) {
+        sidebarRoleBadge.textContent = role.toUpperCase();
+        sidebarRoleBadge.className = `sidebar-role-badge badge-${role}`;
+    }
+
+    if (sidebarActionLink && role === 'barber') {
+        sidebarActionLink.style.display = 'none';
+    }
+
     // Update table header column for Barber vs Customer view
     const partyHeader = document.getElementById('dashboardColParty');
     if (partyHeader) {

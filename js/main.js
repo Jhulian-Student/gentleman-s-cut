@@ -12,10 +12,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         const href = link.getAttribute('href');
         if (href === currentPage) {
             link.classList.add('active');
+            // If inside a dropdown, also style parent dropdown toggle
+            const parentDropdown = link.closest('.nav-item-dropdown');
+            if (parentDropdown && href !== 'index.html') {
+                const toggle = parentDropdown.querySelector('.nav-dropdown-toggle');
+                if (toggle) toggle.classList.add('child-active');
+            }
         }
     });
 
-    // 3. Auto-connect to localhost server if opened directly as a file
+    // 3. Navbar "Home" Dropdown Interactivity (Click / Tap / Escape)
+    initNavbarDropdowns();
+
+    // 4. Dashboard Sidebar Mobile Toggle
+    initDashboardSidebar();
+
+    // 5. Auto-connect to localhost server if opened directly as a file
     if (window.location.protocol === 'file:') {
         const page = window.location.pathname.split('/').pop() || 'index.html';
         try {
@@ -32,10 +44,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // 4. Dynamic Authentication in Navbar (Show "Sign Out" when logged in)
+    // 6. Dynamic Authentication in Navbar (Show "Dashboard" separated to side and "Sign Out")
     await updateNavbarAuth();
 
-    // 4. Scroll Reveal Animations
+    // 7. Scroll Reveal Animations
     const revealItems = document.querySelectorAll(
         '.service-card, .card, .section, .booking-form-wrap, .auth-box, .table-container, .page-header'
     );
@@ -58,7 +70,78 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /**
- * Checks authentication status and toggles Login vs Sign Out in navbar
+ * Initializes dropdown menus (for Home dropdown) with click, touch, and outside-click support
+ */
+function initNavbarDropdowns() {
+    const dropdowns = document.querySelectorAll('.nav-item-dropdown');
+
+    dropdowns.forEach((dropdown) => {
+        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+        if (!toggle) return;
+
+        // Toggle dropdown on click/tap (especially helpful on mobile and touch devices)
+        toggle.addEventListener('click', (e) => {
+            // On mobile or if clicking caret specifically, prevent direct navigation to toggle dropdown
+            if (window.innerWidth <= 768 || e.target.classList.contains('dropdown-caret')) {
+                e.preventDefault();
+                const isOpen = dropdown.classList.contains('open');
+                // Close other dropdowns
+                dropdowns.forEach(d => d.classList.remove('open'));
+                if (!isOpen) {
+                    dropdown.classList.add('open');
+                }
+            }
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-item-dropdown')) {
+            dropdowns.forEach(d => d.classList.remove('open'));
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            dropdowns.forEach(d => d.classList.remove('open'));
+            closeSidebarDrawer();
+        }
+    });
+}
+
+/**
+ * Mobile drawer support for dashboard sidebar
+ */
+function initDashboardSidebar() {
+    const toggleBtn = document.getElementById('sidebarToggleBtn');
+    const sidebar = document.getElementById('dashboardSidebar');
+    const backdrop = document.getElementById('sidebarBackdrop');
+
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('sidebar-open');
+            if (backdrop) backdrop.classList.toggle('active');
+        });
+    }
+
+    if (backdrop && sidebar) {
+        backdrop.addEventListener('click', () => {
+            closeSidebarDrawer();
+        });
+    }
+}
+
+function closeSidebarDrawer() {
+    const sidebar = document.getElementById('dashboardSidebar');
+    const backdrop = document.getElementById('sidebarBackdrop');
+    if (sidebar) sidebar.classList.remove('sidebar-open');
+    if (backdrop) backdrop.classList.remove('active');
+}
+
+/**
+ * Checks authentication status and formats navbar auth elements
  */
 async function updateNavbarAuth() {
     let user = null;
@@ -77,7 +160,28 @@ async function updateNavbarAuth() {
         const storedUser = localStorage.getItem('gentlemanscutUser');
         const storedRole = localStorage.getItem('gentlemanscutRole');
         if (storedUser) {
-            user = { email: storedUser, role: storedRole || 'customer' };
+            user = { 
+                email: storedUser, 
+                role: storedRole || 'customer',
+                fullName: localStorage.getItem('gentlemanscutName') || storedUser
+            };
+        }
+    }
+
+    // Update user profile info on dashboard/admin sidebar if present
+    if (user) {
+        const role = user.role || 'customer';
+        const displayName = user.fullName || user.email;
+
+        const sidebarUserName = document.getElementById('sidebarUserName') || document.getElementById('adminSidebarUserName');
+        if (sidebarUserName) {
+            sidebarUserName.textContent = displayName;
+        }
+
+        const sidebarRoleBadge = document.getElementById('sidebarRoleBadge');
+        if (sidebarRoleBadge) {
+            sidebarRoleBadge.textContent = role.toUpperCase();
+            sidebarRoleBadge.className = `sidebar-role-badge badge-${role}`;
         }
     }
 
@@ -98,23 +202,28 @@ async function updateNavbarAuth() {
 
         if (loginLink) {
             const loginLi = loginLink.parentElement;
-            loginLi.innerHTML = `<a href="${dashboardUrl}">${dashboardLabel}</a>`;
+            loginLi.className = 'nav-auth-item nav-auth-side';
+            loginLi.innerHTML = `
+                <a href="${dashboardUrl}" class="nav-dashboard-btn">
+                    <span class="dash-badge-icon">📊</span>
+                    <span>${dashboardLabel}</span>
+                </a>
+            `;
 
             // Create Sign Out link right after Dashboard
             const signOutLi = document.createElement('li');
+            signOutLi.className = 'nav-auth-item';
             signOutLi.innerHTML = `<a href="#" class="logout-link signout-nav-btn" style="color: #e74c3c; font-weight: 600;">Sign Out</a>`;
             loginLi.parentNode.insertBefore(signOutLi, loginLi.nextSibling);
         }
 
         // Attach logout event listeners to all logout/signout buttons
-        document.querySelectorAll('.logout-link, .signout-nav-btn').forEach((link) => {
-            link.textContent = 'Sign Out';
+        document.querySelectorAll('.logout-link, .signout-nav-btn, .sidebar-logout').forEach((link) => {
             link.addEventListener('click', handleSignOut);
         });
     } else {
         // When not logged in, ensure any logout link is handled
-        document.querySelectorAll('.logout-link').forEach((link) => {
-            link.textContent = 'Sign Out';
+        document.querySelectorAll('.logout-link, .sidebar-logout').forEach((link) => {
             link.addEventListener('click', handleSignOut);
         });
     }

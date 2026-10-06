@@ -30,12 +30,23 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="index.html" class="nav-dropdown-toggle">
+                        Home <span class="dropdown-caret">▾</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="booking.html">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li class="nav-auth-item"><a href="login.html">Login</a></li>
             </ul>
 
         </nav>

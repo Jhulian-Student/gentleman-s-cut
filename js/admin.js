@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (adminAccessNotice) {
             adminAccessNotice.textContent = `Welcome, Administrator (${sessionData.user.fullName || sessionData.user.email}).`;
         }
+
+        const adminSidebarUserName = document.getElementById('adminSidebarUserName');
+        if (adminSidebarUserName) {
+            adminSidebarUserName.textContent = sessionData.user.fullName || sessionData.user.email;
+        }
     } catch (err) {
         console.error('Session verification error:', err);
     }
